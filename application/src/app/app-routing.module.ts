@@ -1,5 +1,5 @@
 import { NgModule, Component } from '@angular/core';
-import { Component1Component } from './components/inicio/inicio.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AppComponent } from './app.component';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';//SE USA PARA CHILD ROUTES
 
 const routes: Routes = [//DECLARING ALL ROUTES OF SITE
   {path: 'login', component: LoginComponent},
-  {path: 'inicio', component: Component1Component,
+  {path: 'inicio', component: InicioComponent,
     children:[
       //USAR CHILDREN PARA SUBRUTAS POR SI ACASO
     ]

@@ -5,10 +5,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-component1',
-  templateUrl: './component1.component.html',
-  styleUrls: ['./component1.component.css']
+  templateUrl: './inicio.component.html',
+  styleUrls: ['./inicio.component.css']
 })
-export class Component1Component implements OnInit {
+export class InicioComponent implements OnInit {
 
   usuario='';
   contra='';
