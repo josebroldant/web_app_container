@@ -1,0 +1,11 @@
+<p style="color: darkgoldenrod">BIENVENIDO {{usuario}}</p>
+
+<div style="border-color: black" class="columnas_barra">
+    <ul>
+        <li><a (click)="navigateTo('/inicio')" class="botonesnavbar">INICIO</a></li>
+        <li><a (click)="navigateTo('/inicio/cargar')" class="botonesnavbar">CARGAR ARCHIVO</a></li>
+        <li><a (click)="navigateTo('/inicio/procesar')" class="botonesnavbar">PROCESAR</a></li>
+    </ul>
+</div>
+
+<button (click)="salida()" class="botones">SALIR</button>
