@@ -1,1 +1,169 @@
-/* You can add global styles to this file, and also import other style files */
+.active{
+    background-color: black;
+}
+
+.botones{/*login button*/
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    margin: auto;
+    margin-top: 8px;
+    background-color:  darkgoldenrod;
+    color: black;
+    border-color: black;
+}
+
+
+.inputs{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    margin: auto;
+    margin-top: 8px;
+    background-color: white;
+    color: black;
+    border-color: blue;
+}
+
+.titulo{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    height: auto;
+    margin-bottom: 16px;
+    color:  darkgoldenrod;
+}
+
+body{
+    background-image: url("https://reddigitalusa.com/wp-content/uploads/2017/11/white-background-wallpaper-hd-1080p.jpg");
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.label{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    margin: auto;
+    color: red;
+}
+
+/*NAV BAR*/
+
+ul {
+    display: grid;
+    justify-content: center;/*donde empieza el contenido*/
+    text-align: center;
+    align-content: center;
+    align-self: center;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    grid-column-gap: 8px;
+    column-count: auto;
+    margin: auto;
+    padding-inline-start: 0px;
+    background-color: goldenrod;
+    font-family: 'Times New Roman', Times, serif;
+    border-style: solid;
+    border-color: black;
+    
+  }
+  
+  li {/*EACH ELEMENT OF THE LIST*/
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    margin-right: auto;
+    border-style: solid;
+    border: black;
+  }
+  
+  li a {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    border: black;
+    border-style: auto;
+    border-spacing: auto;
+  }
+  
+  li:hover {
+    background-color: yellow;/*resalto al pasar el cursor encima*/
+    border: black;
+    overflow: inherit;
+  }
+
+.grid-container{
+  display: grid;
+  grid-template-columns: 424px 424px;
+  grid-template-rows: 64px 128px;
+  grid-column-gap: 4px;
+  padding: 4px;
+  align-content: center;
+  justify-content: space-between;
+  
+}
+
+.botonesnavbar{
+  display: grid;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  border-color: black;
+}
+
+.columnas_barra{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.imagen{
+  display: flex;
+  width: auto;
+  height: auto;
+  align-content: flex-end;
+  justify-content: center;
+  text-align: end;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.loginform{
+  display: flex;
+  width: auto;
+  height: auto;
+  align-content: flex-end;
+  justify-content: center;
+  text-align: end;
+  margin: auto;
+
+}
+
+.inputs.ng-valid{
+  background-color: greenyellow;
+}
+
+.inputs.ng-invalid.ng-touched{
+  background-color: rgb(221, 57, 57);
+}

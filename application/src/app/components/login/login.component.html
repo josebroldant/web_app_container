@@ -1,0 +1,24 @@
+<!--#loginform is a template refernece var-->
+
+<router-outlet></router-outlet>
+<form (submit)="onSubmit(loginform, usuarioInput, contraInput)" #loginform="ngForm">
+    <!--Datos: {{datos}}--> 
+    <input #usuarioInput="ngModel" [(ngModel)]="usuario" type="text" name="usuario" class="inputs" placeholder="Usuario" required
+    minlength="5" maxlength="20"/> 
+    <div *ngIf="usuarioInput.invalid" class="label">
+        El usuario debe tener entre 5 y 20 caracteres.
+    </div>
+    <input #contraInput="ngModel" [(ngModel)]="contra" type="password" name="contra" class="inputs" placeholder="Contraseña" required
+    minlength="8"/>
+    <div *ngIf="contraInput.invalid" class="label">
+            Por favor ingrese su contraseña (Mìnimo 8 carateres).
+        </div>
+    <button class="botones" (click)="ingreso()">LOGIN</button><!--[routerLink]="[{ outlets: { ini: ['inicio'] } }]">--> 
+    <div class="label">AÚN NO TIENES UN USUARIO?, REGISTRATE AQUI</div>
+    <button class="botones" (click)="registro()">REGISTRARSE</button>
+    <!--
+    {{data.usuario}}
+    {{data.contra}}
+    {{data.loggedin}}
+    -->         
+</form>
