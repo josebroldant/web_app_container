@@ -9,7 +9,7 @@
     align-self: center;
     margin: auto;
     margin-top: 8px;
-    background-color:  darkgoldenrod;
+    background-color:  cyan;
     color: black;
     border-color: black;
 }
@@ -35,7 +35,9 @@
     margin: auto;
     height: auto;
     margin-bottom: 16px;
-    color:  darkgoldenrod;
+    color:  blue;
+    font-size: 40px;
+    
 }
 
 body{
@@ -49,6 +51,8 @@ body{
     height: auto;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-block-start: 10%;
+    font-family: 'Times New Roman', Times, serif;
     
 }
 
@@ -58,7 +62,7 @@ body{
     align-content: center;
     align-self: center;
     margin: auto;
-    color: red;
+    color: blue;
 }
 
 /*NAV BAR*/
@@ -161,9 +165,16 @@ ul {
 }
 
 .inputs.ng-valid{
-  background-color: greenyellow;
+  background-color: cyan;
 }
 
 .inputs.ng-invalid.ng-touched{
-  background-color: rgb(221, 57, 57);
+  background-color: red;
 }
+
+
+
+.escudo{
+  margin: auto;
+}
+

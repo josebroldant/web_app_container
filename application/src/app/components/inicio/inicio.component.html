@@ -1,11 +1,10 @@
-<p style="color: darkgoldenrod">BIENVENIDO {{usuario}}</p>
-
-<div style="border-color: black" class="columnas_barra">
-    <ul>
-        <li><a (click)="navigateTo('/inicio')" class="botonesnavbar">INICIO</a></li>
-        <li><a (click)="navigateTo('/inicio/cargar')" class="botonesnavbar">CARGAR ARCHIVO</a></li>
-        <li><a (click)="navigateTo('/inicio/procesar')" class="botonesnavbar">PROCESAR</a></li>
-    </ul>
-</div>
-
+<p class="titulo">BIENVENIDO</p>
+    <div>
+        <h1 class="titulo">MONITOREO DE VARIABLES</h1>
+        <b class="label">Voltaje (V): </b>
+        <b class="label">Corriente (mA): </b>
+        <b class="label">Potencia (W): </b>
+        <b class="label">Llenado (Cm): </b>
+        <b class="label">Estado: </b>
+    </div>
 <button (click)="salida()" class="botones">SALIR</button>
