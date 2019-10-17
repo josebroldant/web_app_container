@@ -18,7 +18,7 @@ export class ClienteService {
   }
 
   obtenerUsuario(id: string): Observable<datos>{
-    return this.http.get<datos>(`http://demo5812578.mockable.io/hello/${id}`);//``concatenacion
+    return this.http.get<datos>(`http://demo5812578.mockable.io/datos/${id}`);//``concatenacion
     }
   }
 
@@ -31,6 +31,9 @@ interface data{
 }
 
 export class datos{
-  usuario: string;
-  contra: string;
+  voltaje: number;
+  corriente: number;
+  potencia: number;
+  llenado: number;
+  estado: string;
 }

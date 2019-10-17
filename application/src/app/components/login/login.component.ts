@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
     request(){
       
       //this.cliente.makeRequest('http://demo5812578.mockable.io/hello').subscribe();  COMMON FUNCITON
-      this.cliente.makeRequest('http://demo5812578.mockable.io/hello').subscribe(res => {
+      this.cliente.makeRequest('http://demo5812578.mockable.io/datos').subscribe(res => {
         console.log(res.msg);//display the message received from service interface
       }, err =>{
         console.log('ERROR');//config of mockable
