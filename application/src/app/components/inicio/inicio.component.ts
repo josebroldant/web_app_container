@@ -40,24 +40,23 @@ export class InicioComponent implements OnInit {
   user: datos = new datos();//datos exportados del servicio
 
   request(){
-
+    /*
     //SOLO PARA SETEAR LOS PARAMS DE LA URL
       
     //this.cliente.makeRequest('http://demo5812578.mockable.io/hello').subscribe();  COMMON FUNCITON
-    this.cliente.makeRequest('http://demo5812578.mockable.io/datos').subscribe(res => {
+    this.cliente.makeRequest('mongodb+srv://A7XENON:<password>@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority').subscribe(res => {
       console.log(res.msg);//display the message received from service interface
     }, err =>{
       console.log('ERROR');//config of mockable
       console.log(err);
     });
-
-    
-    
+    */
+ 
    this.cliente.obtenerUsuario(this.userId).subscribe(res => {//EL SERVICIO OBTENER USUARIO SE GUIA POR EL ID DE LA URL
      this.user = res;
    }, err =>{//EN CASO DE ERROR
      this.user = new datos();
-     console.log('user not found');
+     console.log('data not found');
    });
   } 
     

@@ -20,7 +20,7 @@ export class ClienteService {
   obtenerUsuario(id: string): Observable<datos>{
     //return this.http.get<datos>(`http://demo5812578.mockable.io/datos/${id}`);//``concatenacion
     //GET data from mongodb
-    return this.http.get<datos>(`mongodb+srv://ssmcluster-aobqi.mongodb.net/test`);
+    return this.http.get<datos>(`mongodb+srv://A7XENON:<#Exeron97>@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority`);//URL de donde se obtienen los datos
     }
   }
 
