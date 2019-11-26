@@ -1,7 +1,11 @@
-import { Component, Directive, Pipe } from '@angular/core';
+import { Component, Directive, Pipe, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from './services/cliente.service';
 import { Servicio1Service } from './services/servicio1.service';
+import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
+import { ConnectService } from './services/connect.service';
+import { HttpClient, HttpParams, HttpHeaders, HttpRequest} from '@angular/common/http';
+
 
 //ALL THIS CODE IS ABOUT CLASSES AND FUCNTIONS AND LOGICAL ACTIONS OF THE PROGRAM
 
@@ -9,7 +13,7 @@ import { Servicio1Service } from './services/servicio1.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ClienteService]
+  providers: [ClienteService, ConnectService]
   
 })
 export class AppComponent {
@@ -21,7 +25,7 @@ export class AppComponent {
     contra = '';
     loggedin = false;
     
-    constructor(private router: Router , private cliente: ClienteService, private metodo: Servicio1Service){
+    constructor(private router: Router , private cliente: ClienteService, private metodo: Servicio1Service, private newService: ConnectService){
       /*
       mensaje.getEstado().subscribe(estado => console.log(estado));//DESPUES DE HACER LA FUNCION, UTILIZA SUBSCRIBE,
       //DESDE EL METODO OF DECLARADO EN EL SERVICIO PARA POSTEAR EL ESTADO EN CONSOLA EN ESTE CASO
@@ -29,6 +33,36 @@ export class AppComponent {
       mensaje.getEstado().subscribe(estado => console.log(estado));
       */
     }
+    BaseData;
+    ValButton = "Save";
+
+    ngOnInit(){
+      this.newService.GetUser().subscribe(data => this.BaseData = data);
+    }
+
+    onSave = function(user, isValid: boolean){
+      user.mode = this.ValButton;
+      this.newService.saveUser(user).subscribe(data => {alert(data.data);
+      this.ngOnInit();
+    }
+    , error => this.errorMessage = error)
+
+    }
+
+    edit = function(kk){
+      this.id = kk._id;
+      this.voltaje = kk.voltaje;
+      this.corriente = kk.corriente;
+      this.potencia = kk.potencia;
+      this.llenado = kk.llenado;
+      this.estado = kk.estado;
+    }
+
+    delete = function(id){
+      this.newService.deleteUser(id).subscribe(data => {alert(data.data);
+      this.ngOnInit();}, error => this.errorMessage = error)
+    }
+
     
     navigateTo(to: string){
       this.router.navigate([to]);/*this.router.navigate([to, this.usuario])    --->   /terms/usuario   */ 

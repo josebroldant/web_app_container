@@ -12,6 +12,7 @@ import { ClienteService } from './services/cliente.service';
 import { Servicio1Service } from './services/servicio1.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserNameService } from 'src/app/services/userNameService.service';
+import { ConnectService } from './services/connect.service';
 
 
 //ALL THIS CODE IS JUST FOR INCLUDING COMPONENTS OF ANGULAR AND IMPORT AND EXPORT ELEMENTS BETWEEN COMPONENTS
@@ -35,7 +36,7 @@ import { UserNameService } from 'src/app/services/userNameService.service';
     HttpClientModule
     
   ],
-  providers: [Servicio1Service, ClienteService, UserNameService],//ALWAYS CALL SERVICES HERE IN MODULE.TS
+  providers: [Servicio1Service, ClienteService, UserNameService, ConnectService],//ALWAYS CALL SERVICES HERE IN MODULE.TS
   bootstrap: [AppComponent]
 })
 export class AppModule { }

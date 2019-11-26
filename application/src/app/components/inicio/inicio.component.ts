@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ClienteService, datos } from 'src/app/services/cliente.service';
 import { Servicio1Service } from 'src/app/services/servicio1.service';
 import { UserNameService } from 'src/app/services/userNameService.service';
+//import { mongoose } from 'mongoose';
 
 @Component({
   selector: 'app-component1',
@@ -52,13 +53,16 @@ export class InicioComponent implements OnInit {
     });
     */
  
-   this.cliente.obtenerUsuario(this.userId).subscribe(res => {//EL SERVICIO OBTENER USUARIO SE GUIA POR EL ID DE LA URL
+   
+    this.cliente.obtenerUsuario(this.userId).subscribe(res => {//EL SERVICIO OBTENER USUARIO SE GUIA POR EL ID DE LA URL
      this.user = res;
    }, err =>{//EN CASO DE ERROR
      this.user = new datos();
      console.log('data not found');
    });
-  } 
+   
+
+  }
     
   navigateTo(to: string){
       this.router.navigate([to]);/*this.router.navigate([to, this.usuario])    --->   /terms/usuario   */ 
@@ -69,3 +73,4 @@ export class InicioComponent implements OnInit {
   }
 
 }
+

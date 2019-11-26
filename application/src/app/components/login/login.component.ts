@@ -68,20 +68,14 @@ export class LoginComponent implements OnInit {
 
     request(){
       
-      //this.cliente.makeRequest('http://demo5812578.mockable.io/hello').subscribe();  COMMON FUNCITON
-      this.cliente.makeRequest('http://demo5812578.mockable.io/datos').subscribe(res => {
-        console.log(res.msg);//display the message received from service interface
-      }, err =>{
-        console.log('ERROR');//config of mockable
-        console.log(err);
-      });
-      
-     this.cliente.obtenerUsuario(this.userId).subscribe(res => {//EL SERVICIO OBTENER USUARIO SE GYIA POR EL ID DE LA URL
+    /*
+     this.cliente.obtenerUsuario(this.userId).subscribe(res => {//EL SERVICIO OBTENER USUARIO SE GUIA POR EL ID DE LA URL
        this.user = res;
      }, err =>{//EN CASO DE ERROR
        this.user = new datos();
        console.log('user not found');
      });
+     */
     }
     
     navigateTo(to: string){
