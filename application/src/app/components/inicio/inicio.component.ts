@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ClienteService, datos } from 'src/app/services/cliente.service';
 import { Servicio1Service } from 'src/app/services/servicio1.service';
 import { UserNameService } from 'src/app/services/userNameService.service';
-//import { mongoose } from 'mongoose';
+import { mongoose } from 'mongoose';
 
 @Component({
   selector: 'app-component1',
