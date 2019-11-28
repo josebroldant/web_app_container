@@ -33,13 +33,8 @@ export class AppComponent {
       mensaje.getEstado().subscribe(estado => console.log(estado));
       */
     }
-    BaseData;
-    ValButton = "Save";
 
-    ngOnInit(){
-      this.newService.GetUser().subscribe(data => this.BaseData = data);
-    }
-
+    //LOCAL METHODS
     onSave = function(user, isValid: boolean){
       user.mode = this.ValButton;
       this.newService.saveUser(user).subscribe(data => {alert(data.data);

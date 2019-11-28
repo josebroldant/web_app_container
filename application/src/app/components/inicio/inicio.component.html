@@ -1,7 +1,6 @@
 <p class="titulo">BIENVENIDO</p>
     <div>
         <h1 class="titulo">MONITOREO DE VARIABLES</h1>
-        <input class="inputs" [(ngModel)]="userId" placeholder="Access code">
         <b class="label">Voltaje (V): {{user.voltaje}}</b>
         <b class="label">Corriente (mA): {{user.corriente}}</b>
         <b class="label">Potencia (W): {{user.potencia}}</b>
@@ -9,6 +8,6 @@
         <b class="label">Estado: {{user.estado}}</b>
     </div>
     <div>
-        <button (click)="Request()" class="botones">MOSTRAR DATOS</button>
+        <button (click)="conexion()" class="botones">CONECTAR</button>
     </div>
 <button (click)="salida()" class="botones">SALIR</button>

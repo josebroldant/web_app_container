@@ -5,6 +5,8 @@ import { ClienteService, datos } from 'src/app/services/cliente.service';
 import { Servicio1Service } from 'src/app/services/servicio1.service';
 import { UserNameService } from 'src/app/services/userNameService.service';
 import { mongoose } from 'mongoose';
+import { ComponentFixtureNoNgZone } from '@angular/core/testing';
+import { ConnectService } from 'src/app/services/connect.service';
 
 @Component({
   selector: 'app-component1',
@@ -24,10 +26,11 @@ export class InicioComponent implements OnInit {
   userName: any;
 
   constructor(private router: Router, private metodo: Servicio1Service, private cliente: ClienteService,
-    private rutaActivada: ActivatedRoute, private userNameService : UserNameService){
-      this._subscription_user_name = this.userNameService.execChange.subscribe((value) => {
+    private rutaActivada: ActivatedRoute, private userNameService : UserNameService, private connectService: ConnectService){
+      /*this._subscription_user_name = this.userNameService.execChange.subscribe((value) => {
         this.userName= value; // this.username will hold your value and modify it every time it changes 
     });
+    */
   }
 
   voltaje: number;
@@ -60,8 +63,13 @@ export class InicioComponent implements OnInit {
      this.user = new datos();
      console.log('data not found');
    });
-   
+  
+  
 
+  }
+
+  conexion(){
+    this.connectService.GetUser();
   }
     
   navigateTo(to: string){
