@@ -18,19 +18,7 @@ app.use(function (req, res, next){
     res.setHeader('Access-Control-Allow-Credentials', true);
 });
 
-//CREACION DEL SCHEMA PARA MONGO
-var Schema = mongo.Schema;
-
-var UsersSchema = new Schema({
-   voltaje: {type:String},
-   corriente: {type:String},
-   potencia: {type:String},
-   estado: {type:String},
-   llenado: {type:String},
-    },{versionKey: false});
-
-var model = mongo.model('users', UsersSchema, 'users');
-
+/*
 //DEFINICION DE METODOS
 app.post("/api/SaveUser", function(req, res){
     var mod = new model(req.body);
@@ -79,12 +67,13 @@ app.get("/base1", (request, response) => {
         response.send(result);
     });
 });
+*/
 
 //CONEXION A MONGODB CLOUD
 const uri = "mongodb+srv://A7XENON:Exeron@97@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority";//mongodb web url
 mongoose.connect(uri, { useNewUrlParser: true })
     .then(() => {
-        console.log("Successfuly conected");
+        console.log("Successfuly conected to mongodb atlas");
     })
     .catch((err) => console.error(err));
 
@@ -92,3 +81,19 @@ mongoose.connect(uri, { useNewUrlParser: true })
 app.listen(5000, function(){
     console.log("Listening to port 5000");
 });
+
+//GET DE LA BASE
+
+//const esosDatos = require('./app/models/model');
+
+app.get('/inicio', async (req, res) => {
+    const Modelo = await esosDatos.find({});
+  
+    try {
+      res.send(Modelo);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+  
+  module.exports = app
