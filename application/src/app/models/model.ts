@@ -1,7 +1,7 @@
-
+/*
 const mongoose = require('mongoose');
 
-/*
+
 export class Modelo{
     voltaje:  string;
     corriente: string;
@@ -9,7 +9,7 @@ export class Modelo{
     llenado: string;
     estado: string;
 }
-*/
+
 
 const Schema = new mongoose.Schema({
     voltaje: {type: String},
@@ -21,3 +21,4 @@ const Schema = new mongoose.Schema({
 
 const esosDatos = mongoose.model("esosDatos", Schema);
 module.exports = esosDatos;
+*/

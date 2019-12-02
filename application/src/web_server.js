@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const mongo = require('mongoose');
+//const mongo = require('mongoose');
 
 var app = express();
 app.use(bodyParser());
@@ -69,7 +69,7 @@ app.get("/base1", (request, response) => {
 });
 */
 
-//CONEXION A MONGODB CLOUD
+//CONEXION A MONGODB ATLAS
 const uri = "mongodb+srv://A7XENON:Exeron@97@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority";//mongodb web url
 mongoose.connect(uri, { useNewUrlParser: true })
     .then(() => {
@@ -84,13 +84,14 @@ app.listen(5000, function(){
 
 //GET DE LA BASE
 
-//const esosDatos = require('./app/models/model');
+const esosDatosModel = require('./app/models/modelo');
 
-app.get('/inicio', async (req, res) => {
-    const Modelo = await esosDatos.find({});
+app.get('/', async (req, res) => {
+    const esosDatos = await esosDatosModel.find({});
   
     try {
-      res.send(Modelo);
+      res.send(esosDatos);
+      console.log("Solicitud recibida");
     } catch (err) {
       res.status(500).send(err);
     }

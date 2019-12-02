@@ -75,7 +75,7 @@ export class InicioComponent implements OnInit {
   }
 
   conexion(){
-    this.mongoService.getMongo(this.modelo);
+    this.mongoService.getMongo();
   }
     
   navigateTo(to: string){

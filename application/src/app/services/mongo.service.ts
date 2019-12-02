@@ -9,15 +9,17 @@ const httpOptions = {
 };
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MongoService {
 
   sensorData: any;
 
-  constructor(private req: RequestService) {}
+  constructor(private req: RequestService, private http: HttpClient) {}
   
-  public getMongo(modelo: any) {
-    this.sensorData=this.req.get(`/inicio`, { data: modelo});
+  public getMongo() {
+    this.sensorData=this.http.get('http://localhost:5000/');
     return this.sensorData;
   }
 
