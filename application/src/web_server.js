@@ -74,6 +74,7 @@ const uri = "mongodb+srv://A7XENON:Exeron@97@ssmcluster-aobqi.mongodb.net/test?r
 mongoose.connect(uri, { useNewUrlParser: true })
     .then(() => {
         console.log("Successfuly conected to mongodb atlas");
+        
     })
     .catch((err) => console.error(err));
 
@@ -98,3 +99,4 @@ app.get('/', async (req, res) => {
   });
   
   module.exports = app
+
