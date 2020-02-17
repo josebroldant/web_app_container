@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express(); 
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 //start server
@@ -95,16 +95,7 @@ app.post('/send', async (req, res) => {
   
 module.exports = app
 
-/*
-var modelo = mongoose.model('variables', Schema); 
 
-function saveData(data){
-    var guardado = new variables(data);
-    guardado.save(function (err){
-        if (err) return handleError(err);
-    })
-}
-*/
 
 
 
