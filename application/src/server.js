@@ -32,20 +32,14 @@ app.get('/', function (req, res) {
 
 //obtain json from esp8266
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/x-www-form-urlencoded' }));
-app.post('/', function(req, res) {    
+app.post('/', function(req, res){    
     res.send('Got the data!!');    
-    const { voltage, current, power, state, level } = req.body
+    //const { voltage, current, power, state, level } = req.body
     console.log(req.body);
-    //const datos = req.body;
-    //console.log(datos);
-})
-
-//async function to save data based on post
-
-app.post('/test', async (req, res) => {
-    console.log(req.body);
+    
+    /*
     const newDatos = new modelo(req.body);//wrap data into a mongodb model 
     try {
       await newDatos.save();
@@ -53,26 +47,60 @@ app.post('/test', async (req, res) => {
     } catch (err) {
       res.status(500).send(err);
     }
+    */
+
+    /*
+    var userData = {
+      voltage: req.body.voltage,
+      current: req.body.current,
+      power: req.body.power,
+      state: req.body.state,
+      level: req.body.level      
+    }
+    new eventData(userData).save()
+    .then(res => {
+      res.send("data saved");
+    })
+    .catch(err => {
+      res.status(400).send("Unable to save data");
+    });
+    */
+  
+});
+
+var json_test = {
+  "voltage": 0.87999,
+  "current": -0.1,
+  "power": 0,
+  "state": "F",
+  "level": -1
+}
+
+mongoose.Promise = global.Promise;
+//async function to save data based on post
+
+app.post('/test', async (req, res) => {
+    console.log(req.body);
+    //const { voltage, current, power, state, level } = req.body;
+    const newDatos = new modelo(req.body);//wrap data into a mongodb model 
+    try {
+      await newDatos.save();
+      res.send(newDatos);
+      console.log("succesfully saved");
+    } catch (err) {
+      res.status(500).send(err);
+      console.log("cannot save data");
+    }
   });
 
 //mongodb schema
 
 var Schema =  mongoose.Schema({
-    "voltage" : {
-        type: String
-    },
-    "current":{
-        type: String
-    },
-    "power" : {
-        type: String
-    },
-    "state" : {
-        type: String
-    },
-    "level" : {
-        type: String
-    }
+    voltage: String,
+    current: String,
+    power:  String,
+    state: String,
+    level:  String,
 });
 
 //create mongodb model based on schema to send data
