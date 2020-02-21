@@ -1,7 +1,14 @@
 var express = require('express');
 var app = express(); 
 var bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
+/*
+const db = require("./db");
+const dbName = "variables";
+const collectionName = "container";
+*/
+
+mongoose.Promise = global.Promise;
 
 //start server
 app.listen(8081, function(){
@@ -9,21 +16,15 @@ app.listen(8081, function(){
 });
 
 //CONEXION A MONGODB ATLAS
+
 const uri = "mongodb+srv://A7XENON:Exeron@97@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority";//mongodb web url
-const database_name = "variables";
-var database, collection;
 mongoose.connect(uri, { useNewUrlParser: true })
     .then(() => {
         console.log("Successfuly conected to mongodb atlas");
         
     })
     .catch((err) => console.error(err));
-    /*
-    database = client.db(database_name);
-    collection = database.colection("container");
-    console.log("Connected to `" + database_name + "`!");
-    */
-
+   
 
 //get method    
 app.get('/', function (req, res) { 
@@ -32,40 +33,40 @@ app.get('/', function (req, res) {
 
 //obtain json from esp8266
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json({ type: 'application/x-www-form-urlencoded' }));
-app.post('/', function(req, res){    
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ type: 'application/json' }));
+app.post('/', function(req, res) {    
     res.send('Got the data!!');    
-    //const { voltage, current, power, state, level } = req.body
     console.log(req.body);
+    //req.body = JSON.parse(req.body);
+    //var parsed = JSON.stringify(req.body);
+    //var { voltage, current, power, state, level } = req.body;
     
-    /*
-    const newDatos = new modelo(req.body);//wrap data into a mongodb model 
-    try {
-      await newDatos.save();
-      res.send(newDatos);
-    } catch (err) {
-      res.status(500).send(err);
-    }
-    */
+    
+    var newDatos = new modelo(req.body);//wrap data into a mongodb model 
+    newDatos.save()
+      .then(item => {
+        res.send("saved to database");
+        console.log("succesfully saved");
+      })
+      .catch(err => {
+        res.status(400).send("cannot save");
+        console.log("cannot be saved");
+      });
+      
 
-    /*
-    var userData = {
-      voltage: req.body.voltage,
-      current: req.body.current,
-      power: req.body.power,
-      state: req.body.state,
-      level: req.body.level      
-    }
-    new eventData(userData).save()
-    .then(res => {
-      res.send("data saved");
-    })
-    .catch(err => {
-      res.status(400).send("Unable to save data");
+    /* //USING ANOTHER METHOD
+    const item = req.body;
+      dbCollection.insertOne(item, (error, result) => { // callback of insertOne
+        if (error) throw error;
+        // return updated list
+        dbCollection.find().toArray((_error, _result) => { // callback of find
+            if (_error) throw _error;
+            response.json(_result);
+        });
     });
-    */
-  
+    */  
+      
 });
 
 var json_test = {
@@ -76,39 +77,25 @@ var json_test = {
   "level": -1
 }
 
-mongoose.Promise = global.Promise;
-//async function to save data based on post
-
-app.post('/test', async (req, res) => {
-    console.log(req.body);
-    //const { voltage, current, power, state, level } = req.body;
-    const newDatos = new modelo(req.body);//wrap data into a mongodb model 
-    try {
-      await newDatos.save();
-      res.send(newDatos);
-      console.log("succesfully saved");
-    } catch (err) {
-      res.status(500).send(err);
-      console.log("cannot save data");
-    }
-  });
-
-//mongodb schema
+//mongodb schemas
 
 var Schema =  mongoose.Schema({
-    voltage: String,
-    current: String,
-    power:  String,
-    state: String,
-    level:  String,
+  voltage: {type: String},
+  current: {type: String},
+  power: {type: String},
+  state: {type: String},
+  level: {type: String}
 });
 
-//create mongodb model based on schema to send data
-
 var modelo = mongoose.model("modelo", Schema);
-module.exports = modelo;
+//module.exports = modelo;
+
 
 //post data to mongodb
+
+app.post('/test', function (req, res) {
+  console.log(req.body);
+});
 
 app.post('/send', async (req, res) => {
     //const datos = { voltage, current, power, state, level };  
