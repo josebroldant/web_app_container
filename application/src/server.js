@@ -36,14 +36,23 @@ app.get('/', function (req, res) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }));
 app.post('/', function(req, res) {    
-    res.send('Got the data!!');    
-    console.log(req.body);
+    res.send('Got the data!!');
+    //console.log(req.headers);    
+    //console.log(req.body);
     //req.body = JSON.parse(req.body);
     //var parsed = JSON.stringify(req.body);
     //var { voltage, current, power, state, level } = req.body;
+    var json_final = {
+      "voltage": req.body["voltage"],
+      "current": req.body["current"],
+      "power": req.body["power"],
+      "state": req.body["state"],
+      "level": req.body["level"]
+    }
     
-    
-    var newDatos = new modelo(req.body);//wrap data into a mongodb model 
+    console.log(json_final);
+
+    var newDatos = new modelo(json_final);//wrap data into a mongodb model 
     newDatos.save()
       .then(item => {
         res.send("saved to database");
@@ -70,11 +79,11 @@ app.post('/', function(req, res) {
 });
 
 var json_test = {
-  "voltage": 0.87999,
-  "current": -0.1,
-  "power": 0,
+  "voltage": 1,
+  "current": 2,
+  "power": 3,
   "state": "F",
-  "level": -1
+  "level": 4
 }
 
 //mongodb schemas
