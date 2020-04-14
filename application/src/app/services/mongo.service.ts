@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RequestService } from './request.service';
 import { Stitch, AnonymousCredential, RemoteMongoClient } from 'mongodb-stitch';
 import express, { Request, Response } from "express";
 import * as mongoose from "mongoose";
@@ -79,7 +78,7 @@ const httpOptions = {
 })
 export class MongoService {
 
-  constructor(private req: RequestService, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
   
   sensorData: any;
 

@@ -6,7 +6,6 @@ import { Servicio1Service } from 'src/app/services/servicio1.service';
 import { UserNameService } from 'src/app/services/userNameService.service';
 import { mongoose } from 'mongoose';
 import { ComponentFixtureNoNgZone } from '@angular/core/testing';
-import { ConnectService } from 'src/app/services/connect.service';
 import { MongoService } from 'src/app/services/mongo.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -30,7 +29,7 @@ export class InicioComponent implements OnInit {
 
   constructor(private router: Router, private metodo: Servicio1Service, private cliente: ClienteService,
     private rutaActivada: ActivatedRoute, private userNameService : UserNameService, 
-    private connectService: ConnectService, private mongoService: MongoService, private http: HttpClient){
+    private mongoService: MongoService, private http: HttpClient){
       /*this._subscription_user_name = this.userNameService.execChange.subscribe((value) => {
         this.userName= value; // this.username will hold your value and modify it every time it changes 
     });
@@ -75,7 +74,7 @@ export class InicioComponent implements OnInit {
 
   }
 
-  conexion(){
+  obtainData(){
     this.mongoService.getMongo();
   }
     
