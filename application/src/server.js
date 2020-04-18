@@ -3,11 +3,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var json_vacio = {"voltage":"", "current":"", "power":"", "level":"", "state":""};
-/*
-const db = require("./db");
-const dbName = "variables";
-const collectionName = "container";
-*/
 
 mongoose.Promise = global.Promise;
 
@@ -16,8 +11,8 @@ app.listen(8081, function(){
     console.log("Listening to port 8081");
 });
 
-var angular = 'http://localhost:4200';
 //PERMISOS DE ACCESO PARA LA APLICACION
+var angular = 'http://localhost:4200';
 app.use(function (req, res, next){
   res.setHeader('Access-Control-Allow-Origin', angular);
   res.setHeader('Access-Control-Allow-Methods','GET, POST, PUT, OPTIONS, PATCH, DELETE');
@@ -25,9 +20,6 @@ app.use(function (req, res, next){
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-
-
-
 
 //CONEXION A MONGODB ATLAS
 
@@ -38,12 +30,6 @@ mongoose.connect(uri, { useNewUrlParser: true })
         
     })
     .catch((err) => console.error(err));
-   
-
-//get method    
-app.get('/', function (req, res) { 
-    res.send("Hello from Server"); 
-    })
 
 //obtain json from esp8266
 
@@ -70,7 +56,8 @@ app.post('/', function(req, res) {
 
     console.log(json_final);
 
-    var newDatos = new modelo(json_final);//wrap data into a mongodb model 
+    //SAVE DATA IN MONGODB ATLAS
+    var newDatos = new modelo(json_final);
     newDatos.save()
       .then(item => {
         res.send("saved to database");
@@ -83,15 +70,7 @@ app.post('/', function(req, res) {
       
 });
 
-var json_test = {
-  "voltage": 1,
-  "current": 2,
-  "power": 3,
-  "state": "F",
-  "level": 4
-}
-
-//mongodb schemas
+//mongodb data model
 
 var Schema =  mongoose.Schema({
   voltage: {type: String},
@@ -102,25 +81,30 @@ var Schema =  mongoose.Schema({
 });
 
 var modelo = mongoose.model("modelo", Schema);
-//module.exports = modelo;
 
+//UNLOCK DATA TO SEND TO ESP8266
+var json_unlock = {
+  estado: "F"
+}
 
-//send data to angular app
+//SEND DATA TO ANGULAR APP
 
 app.get('/test', function (req, res) {
   res.send(json_vacio);
 });
 
-app.post('/send', async (req, res) => {
-    //const datos = { voltage, current, power, state, level };  
-    const datos = new modelo(req.body);
-    try {
-      await datos.save();
-      res.send(datos);
-    } catch (err) {
-      res.status(500).send(err);
-    }
-  });
+//SEND UNLOCK DATA TO ESP8266
+
+app.post('/unlock', function (req, res) {
+  json_unlock = req.body;//PASS FROM DEFAULT FULL TO NORMAL
+  res.send(json_unlock.estado);//RESPUESTA AL ANGULAR
+  console.log("ESTADO RECIBIDO DE ANGULAR: "+json_unlock.estado);
+});
+
+app.get('/unlock', function (req, res) {
+  res.send(json_unlock.estado);//ENVIO A LA TARJETA EL ESTADO ACTUAL F Ó N
+  console.log("ESTADO ENVIADO A LA TARJETA: "+json_unlock.estado);
+});
   
 module.exports = app
 
