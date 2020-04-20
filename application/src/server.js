@@ -47,7 +47,8 @@ app.post('/', function(req, res) {
       "current": req.body["current"],
       "power": req.body["power"],
       "state": req.body["state"],
-      "level": req.body["level"]
+      "level": req.body["level"],
+      "time": req.body["time"]
     }
 
     //PARA EL GET DE ANGULAR
@@ -77,7 +78,8 @@ var Schema =  mongoose.Schema({
   current: {type: String},
   power: {type: String},
   state: {type: String},
-  level: {type: String}
+  level: {type: String},
+  time: {type: String}
 });
 
 var modelo = mongoose.model("modelo", Schema);
