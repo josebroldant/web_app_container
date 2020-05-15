@@ -91,7 +91,7 @@ var json_unlock = {
 
 //SEND DATA TO ANGULAR APP
 
-app.get('/test', function (req, res) {
+app.get('/getData', function (req, res) {
   res.send(json_vacio);
 });
 
@@ -100,7 +100,7 @@ app.get('/test', function (req, res) {
 app.post('/unlock', function (req, res) {
   json_unlock = req.body;//PASS FROM DEFAULT FULL TO NORMAL
   res.send(json_unlock.estado);//RESPUESTA AL ANGULAR
-  console.log("ESTADO RECIBIDO DE ANGULAR: "+json_unlock.estado);
+  console.log("ESTADO RECIBIDO AL ACCIONAR EL BOTON: "+json_unlock.estado);
 });
 
 app.get('/unlock', function (req, res) {

@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Stitch, AnonymousCredential, RemoteMongoClient } from 'mongodb-stitch';
+import { observable, Observable } from 'rxjs';
+import { Dato } from '../models/model';
+import { DatoDesbloqueo } from '../models/unlock_model';
+/*
 import express, { Request, Response } from "express";
 import * as mongoose from "mongoose";
-import * as DataController from "src/app/DataController";
 
+
+//MONGODB ATLAS CONNECTION
 const app = express();
 app.use(express.json());
 
@@ -18,7 +22,7 @@ mongoose.connect(uri, (err: any) => {
   }
 });
 
-app.get("/data", DataController.allData);//API direction
+//CREATE MONGODB DATA MODEL
 
 export interface NewData extends mongoose.Document {
   voltage: string;
@@ -39,38 +43,14 @@ export const DataSchema = new mongoose.Schema({
 const Data = mongoose.model<NewData>("Data", DataSchema);
 export default Data;
 
-
-/*
-// 1. Connect to MongoDB
-// It’s simple to point Stitch to a MongoDB collection
-const stitchClient = Stitch.initializeDefaultAppClient('myApp');
-
-// Connect to a MongoDB Atlas database
-const db = stitchClient
-  .getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas')
-  .db('test');//name of database
-
-stitchClient.auth.loginWithCredential(new AnonymousCredential())
-  .then(() =>
-  db.collection("modelos").find({}).asArray()
-  ).then((docs) =>
-  docs.forEach((doc, index) =>
-    console.log(`${index}: ${JSON.stringify(doc)}`)
-  )
-);
-
-const uri = "mongodb+srv://A7XENON:Exeron@97@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority";//mongodb web url
-db.connect(uri, { useNewUrlParser: true })
-    .then(() => {
-        console.log("Successfuly conected to mongodb atlas");
-        
-    })
-    .catch((err) => console.error(err));
 */
+
+//HTTP HEADERS SETUP
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
 
 
 @Injectable({
@@ -80,14 +60,19 @@ export class MongoService {
 
   constructor(private http: HttpClient) {}
   
-  sensorData: any;
+  private uri = 'http://localhost:8081/getData';
+  private unlockURL = 'http://localhost:8081/unlock';
 
-  public getMongo() {
-    //this.sensorData = req.body;
-    this.sensorData=this.http.get('http://localhost:8081/');
-    return this.sensorData;
+  getMongo(): Observable<Dato> {
+    return this.http.get<Dato>(this.uri);//TRIES TO OBTAIN THE JSON DATA FROM THE NODEJS SERVER IN PORT 8081
+  }
+
+  unlock(data: DatoDesbloqueo): Observable<any>{//<> is the response of the post action, not the data that we are going to send
+    console.log(data);
+    return this.http.post<any>(this.unlockURL, data);
   }
 
 }
+
 
 

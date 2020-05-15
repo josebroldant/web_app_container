@@ -1,89 +1,56 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ClienteService, datos } from 'src/app/services/cliente.service';
-import { Servicio1Service } from 'src/app/services/servicio1.service';
-import { UserNameService } from 'src/app/services/userNameService.service';
-import { mongoose } from 'mongoose';
-import { ComponentFixtureNoNgZone } from '@angular/core/testing';
 import { MongoService } from 'src/app/services/mongo.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Dato } from 'src/app/models/modelo';
+import { DatoDesbloqueo } from 'src/app/models/unlock_model';
 
 @Component({
-  selector: 'app-component1',
+  selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
 
-  usuario='';
-  contra='';
-  
-  ngOnInit() {
+  public datos: Dato;//FOR OBTAIN DATA
+  public unlock_datos : DatoDesbloqueo;//FOR UNLOCK
+
+  constructor(private router: Router, private mongoService: MongoService) {
+    this.unlock_datos = new DatoDesbloqueo();
+    this.unlock_datos.estado = "N";
   }
 
-  @Input() datos: string;
-  _subscription_user_name: any;
-  userName: any;
-
-  constructor(private router: Router, private metodo: Servicio1Service, private cliente: ClienteService,
-    private rutaActivada: ActivatedRoute, private userNameService : UserNameService, 
-    private mongoService: MongoService, private http: HttpClient){
-      /*this._subscription_user_name = this.userNameService.execChange.subscribe((value) => {
-        this.userName= value; // this.username will hold your value and modify it every time it changes 
-    });
-    */
-  }
-
-  voltaje: number;
-  corriente: number;
-  potencia: number;
-  llenado: number;
-  estado: string;
-
-  modelo = '';
-
-  loggedin = false;
-    
-  userId: string;//identificador de los datos
-  user: datos = new datos();//datos exportados del servicio
-
-  request(){
-    /*
-    //SOLO PARA SETEAR LOS PARAMS DE LA URL
-      
-    //this.cliente.makeRequest('http://demo5812578.mockable.io/hello').subscribe();  COMMON FUNCITON
-    this.cliente.makeRequest('mongodb+srv://A7XENON:<password>@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority').subscribe(res => {
-      console.log(res.msg);//display the message received from service interface
-    }, err =>{
-      console.log('ERROR');//config of mockable
-      console.log(err);
-    });
-    */
- 
-   
-    this.cliente.obtenerUsuario(this.userId).subscribe(res => {//EL SERVICIO OBTENER USUARIO SE GUIA POR EL ID DE LA URL
-     this.user = res;
-   }, err =>{//EN CASO DE ERROR
-     this.user = new datos();
-     console.log('data not found');
-   });
-  
-  
-
-  }
-
+  //OBTAIN DATA FROM SERVER
   obtainData(){
-    this.mongoService.getMongo();
+    this.mongoService.getMongo().subscribe(data => {
+      console.log(data);
+      this.datos = data;
+    });
   }
-    
+
+  //SEND UNLOCK RESPONSE TO SERVER
+  unlock(){
+    this.mongoService.unlock(this.unlock_datos).subscribe(data_unlock => {
+      console.log(data_unlock);
+    });
+  }
+  
+  //ROUTING
   navigateTo(to: string){
       this.router.navigate([to]);/*this.router.navigate([to, this.usuario])    --->   /terms/usuario   */ 
   }
 
+  //GO TO LOGIN
   salida(){
     this.navigateTo("/login");
+  }
+
+  //Show on the front
+  ngOnInit() {
+    window.setInterval(()=>{
+      this.obtainData();
+    },1000);
   }
 
 }
