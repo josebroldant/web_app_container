@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { mongoose } from 'mongoose';
+import { Mongoose } from 'mongoose';//just for mongoDB
 
 @Injectable({
   providedIn: 'root'

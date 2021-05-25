@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { observable, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Dato } from '../models/model';
 import { DatoDesbloqueo } from '../models/unlock_model';
 /*
@@ -60,16 +60,16 @@ export class MongoService {
 
   constructor(private http: HttpClient) {}
   
-  private uri = 'http://localhost:8081/getData';
-  private unlockURL = 'http://localhost:8081/unlock';
+  private url = 'http://localhost:8081/getData';//Server url api get
+  private unlockURL = 'http://localhost:8081/unlock';//Server url post
 
   getMongo(): Observable<Dato> {
-    return this.http.get<Dato>(this.uri);//TRIES TO OBTAIN THE JSON DATA FROM THE NODEJS SERVER IN PORT 8081
+    return this.http.get<Dato>(this.url);//GET data from nodejs server
   }
 
   unlock(data: DatoDesbloqueo): Observable<any>{//<> is the response of the post action, not the data that we are going to send
     console.log(data);
-    return this.http.post<any>(this.unlockURL, data);
+    return this.http.post<any>(this.unlockURL, data);//POST unlock data to the server
   }
 
 }

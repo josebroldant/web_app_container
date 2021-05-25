@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Servicio1Service } from 'src/app/services/servicio1.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ActivatedRoute } from '@angular/router';//SE USA PARA CHILD ROUTES
 
 @Component({
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';//SE USA PARA CHILD ROUTES
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private metodo: Servicio1Service) { }
+  constructor(private router: Router, private metodo: LoginService) { }
 
   usuario: string;
   contra: string;

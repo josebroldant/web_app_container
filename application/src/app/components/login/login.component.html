@@ -17,8 +17,8 @@
     <input #contraInput="ngModel" [(ngModel)]="contra" type="password" name="contra" class="inputs" placeholder="Contraseña" required
     minlength="8"/>
     <div *ngIf="contraInput.invalid" class="label">
-            Por favor ingrese su contraseña (Mìnimo 8 carateres).
-        </div>
+        Por favor ingrese su contraseña (Mínimo 8 carateres).
+    </div>
     <button class="botones" (click)="ingreso()">LOGIN</button><!--[routerLink]="[{ outlets: { ini: ['inicio'] } }]">--> 
     <!--
     {{data.usuario}}

@@ -1,7 +1,7 @@
 import { Component, Directive, Pipe, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from './services/cliente.service';
-import { Servicio1Service } from './services/servicio1.service';
+import { LoginService } from './services/login.service';
 import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
 import { HttpClient, HttpParams, HttpHeaders, HttpRequest} from '@angular/common/http';
 import { MongoService } from './services/mongo.service';
@@ -25,7 +25,7 @@ export class AppComponent {
     contra = '';
     loggedin = false;
     
-    constructor(private router: Router , private cliente: ClienteService, private metodo: Servicio1Service, private newService: MongoService){
+    constructor(private router: Router , private cliente: ClienteService, private metodo: LoginService, private newService: MongoService){
       /*
       mensaje.getEstado().subscribe(estado => console.log(estado));//DESPUES DE HACER LA FUNCION, UTILIZA SUBSCRIBE,
       //DESDE EL METODO OF DECLARADO EN EL SERVICIO PARA POSTEAR EL ESTADO EN CONSOLA EN ESTE CASO

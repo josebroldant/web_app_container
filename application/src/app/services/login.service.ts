@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class Servicio1Service {
+export class LoginService {
 
   estado = false;
 

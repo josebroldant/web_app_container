@@ -1,18 +1,21 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var mongo = require('mongoose');
+//Import libraries
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const mongo = require('mongoose');
 
-var db = mongo.connect("mongodb://localhost:27017/web_app_container", function(err, response){
+//Connection to MongoDB local server on PC
+let db = mongo.connect("mongodb://localhost:27017/web_app_container", function(err, response){
     if(err){console.log( err);}
     else{console.log('Connected to'+db, ' * ', response);}
 });
 
-var app = express();
+let app = express();
 app.use(bodyParser());
 app.use(bodyParser.json({limit:'5mb'}));
 app.use(bodyParser.urlencoded({extended:true}));
 
+//App permissions
 app.use(function (req, res, next){
     res.setHeader('Access-Control-Allow-Origin','http://localhost:4200/');
     res.setHeader('Access-Control-Allow-Methods','GET, POST, PUT, OPTIONS, PATCH, DELETE');
@@ -20,9 +23,10 @@ app.use(function (req, res, next){
     res.setHeader('Access-Control-Allow-Credentials', true);
 });
 
-var Schema = mongo.Schema;
+let Schema = mongo.Schema;
 
-var UsersSchema = new Schema({
+//MongoDB data schema
+let UsersSchema = new Schema({
    voltaje: {type:String},
    corriente: {type:String},
    potencia: {type:String},
@@ -30,7 +34,10 @@ var UsersSchema = new Schema({
    llenado: {type:String},
     },{versionKey: false});
 
-var model = mongo.model('users', UsersSchema, 'users');
+//Wrap schema into model
+let model = mongo.model('users', UsersSchema, 'users');
+
+//API with different methods
 
 app.post("/api/SaveUser", function(req, res){
     var mod = new model(req.body);

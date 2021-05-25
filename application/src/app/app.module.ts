@@ -9,7 +9,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ClienteService } from './services/cliente.service';
-import { Servicio1Service } from './services/servicio1.service';
+import { LoginService } from './services/login.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserNameService } from 'src/app/services/userNameService.service';
 import { MongoService } from './services/mongo.service';
@@ -36,7 +36,7 @@ import { MongoService } from './services/mongo.service';
     HttpClientModule
     
   ],
-  providers: [Servicio1Service, ClienteService, UserNameService, MongoService],//ALWAYS CALL SERVICES HERE IN MODULE.TS
+  providers: [LoginService, ClienteService, UserNameService, MongoService],//ALWAYS CALL SERVICES HERE IN MODULE.TS
   bootstrap: [AppComponent]
 })
 export class AppModule { }
