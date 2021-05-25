@@ -3,9 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Mongoose } from 'mongoose';//just for mongoDB
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ClienteService {
 
   constructor(private http: HttpClient) {}

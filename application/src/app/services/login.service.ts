@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LoginService {
 
-  estado = false;
+  estado: boolean = false;
 
   login(usuario: string, contra: string): Observable<boolean>{
     this.estado = false;
@@ -15,7 +13,7 @@ export class LoginService {
       this.estado = true;
     }
     else{
-      
+      this.estado = false;
     }
     return of(this.estado);
   }
