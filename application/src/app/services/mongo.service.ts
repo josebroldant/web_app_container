@@ -12,7 +12,7 @@ import * as mongoose from "mongoose";
 const app = express();
 app.use(express.json());
 
-const uri: string = "mongodb+srv://A7XENON:Exeron@97@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority";
+const uri: string = "mongodb+srv://A7XENON:hQ2avCURNK1nMjcJ@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose.connect(uri, (err: any) => {
   if (err) {
