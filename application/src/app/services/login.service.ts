@@ -9,7 +9,7 @@ export class LoginService {
 
   login(usuario: string, contra: string): Observable<boolean>{
     this.estado = false;
-    if(usuario=='joseroldan' && contra=='1234567890'){
+    if(usuario=='admin' && contra=='1234567890'){
       this.estado = true;
     }
     else{

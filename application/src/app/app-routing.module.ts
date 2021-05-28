@@ -13,7 +13,8 @@ const routes: Routes = [//DECLARING ALL ROUTES OF SITE
       //USAR CHILDREN PARA SUBRUTAS POR SI ACASO
     ]
   },
-  {path: '**', pathMatch: 'full', redirectTo: 'login'}//REDIRIGE AL LOGIN
+  {path: 'notfound', component: NotfoundComponent},
+  {path: '**', pathMatch: 'full', redirectTo: 'notfound'}//REDIRIGE AL LOGIN
 ];
 
 @NgModule({

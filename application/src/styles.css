@@ -1,0 +1,29 @@
+.titulo{
+    font-size: 18px;
+    display: flex;
+    align-content: center;
+    color: black;
+}
+
+.escudo{
+    display: flex;
+    align-content: center;
+
+}
+
+.inputs{
+    border: black;
+    display: flex;
+    align-content: center;
+}
+
+.label{
+    display: flex;
+    align-content: center;
+
+}
+
+.botones{
+    display: flex;
+    align-content: center;
+}
