@@ -11,12 +11,12 @@
     <!--Datos: {{datos}}--> 
     <input #usuarioInput="ngModel" [(ngModel)]="usuario" type="text" name="usuario" class="inputs" placeholder="Usuario" required
     minlength="5" maxlength="20"/> 
-    <div *ngIf="usuarioInput.invalid" class="label">
+    <div *ngIf="usuarioInput.invalid" class="labels">
         El usuario debe tener entre 5 y 20 caracteres.
     </div>
     <input #contraInput="ngModel" [(ngModel)]="contra" type="password" name="contra" class="inputs" placeholder="Contraseña" required
     minlength="8"/>
-    <div *ngIf="contraInput.invalid" class="label">
+    <div *ngIf="contraInput.invalid" class="labels">
         Por favor ingrese su contraseña (Mínimo 8 carateres).
     </div>
     <button class="botones" (click)="ingreso()">LOGIN</button><!--[routerLink]="[{ outlets: { ini: ['inicio'] } }]">--> 

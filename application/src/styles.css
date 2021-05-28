@@ -8,6 +8,7 @@
 .escudo{
     display: flex;
     align-content: center;
+    width: 50%;
 
 }
 
@@ -17,7 +18,7 @@
     align-content: center;
 }
 
-.label{
+.labels{
     display: flex;
     align-content: center;
 

@@ -2,12 +2,12 @@
 <p class="titulo">BIENVENIDO</p>
     <div>
         <h1 class="titulo">MONITOREO DE VARIABLES</h1>
-        <b class="label">Voltaje (V): <span *ngIf="datos">{{datos.voltage}}</span></b>
-        <b class="label">Corriente (mA): <span *ngIf="datos">{{datos.current}}</span></b>
-        <b class="label">Potencia (W): <span *ngIf="datos">{{datos.power}}</span></b>
-        <b class="label">Llenado (Cm): <span *ngIf="datos">{{datos.level}}</span></b>
-        <b class="label">Estado: <span *ngIf="datos">{{datos.state}}</span></b>
-        <b class="label">Hora: <span *ngIf="datos">{{datos.time}}</span></b>
+        <b class="labels">Voltaje (V): <span *ngIf="datos">{{datos.voltage}}</span></b>
+        <b class="labels">Corriente (mA): <span *ngIf="datos">{{datos.current}}</span></b>
+        <b class="labels">Potencia (W): <span *ngIf="datos">{{datos.power}}</span></b>
+        <b class="labels">Llenado (Cm): <span *ngIf="datos">{{datos.level}}</span></b>
+        <b class="labels">Estado: <span *ngIf="datos">{{datos.state}}</span></b>
+        <b class="labels">Hora: <span *ngIf="datos">{{datos.time}}</span></b>
     </div>
 <button (click)="unlock()" class="botones">DESBLOQUEAR</button>    
 <button (click)="salida()" class="botones">SALIR</button>
