@@ -14,7 +14,7 @@ const routes: Routes = [//DECLARING ALL ROUTES OF SITE
     ]
   },
   {path: 'notfound', component: NotfoundComponent},
-  {path: '**', pathMatch: 'full', redirectTo: 'notfound'}//REDIRIGE AL LOGIN
+  {path: '**', pathMatch: 'full', redirectTo: 'notfound'}//Si no encuentra la ruta redirige a notfound
 ];
 
 @NgModule({

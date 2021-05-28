@@ -24,7 +24,7 @@ app.use(function (req, res, next){
 
 //Connection to mongo db atlas (MongoDB Online)
 
-const db_url = "mongodb+srv://A7XENON:Exeron@97@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority";//mongodb web url
+const db_url = "mongodb+srv://A7XENON:hQ2avCURNK1nMjcJ@ssmcluster-aobqi.mongodb.net/test?retryWrites=true&w=majority";//mongodb web url
 mongoose.connect(db_url, { useNewUrlParser: true })
     .then(() => {
         console.log("Successfuly conected to mongodb atlas");
